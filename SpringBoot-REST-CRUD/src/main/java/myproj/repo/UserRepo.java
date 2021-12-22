@@ -11,6 +11,6 @@ import myproj.entity.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer> {
 	
-	@Query(value="select * from rohitdb.user where salary>= :salaryPassed",nativeQuery=true)
+	@Query(value="select * from user where salary>= :salaryPassed",nativeQuery=true)
 	public List<User> filterUserBySalary(@Param("salaryPassed") float salary);
 }

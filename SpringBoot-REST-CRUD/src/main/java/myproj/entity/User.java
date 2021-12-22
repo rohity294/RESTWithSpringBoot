@@ -13,33 +13,32 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name="id")
 	private int userId;
 	
 	@Column(name="name")
-	private String name;
+	private String userName;
 	
 	@Column(name="age")
-	private int age;
+	private int userAge;
 	
 	@Column(name="salary")
-	private float salary;
+	private float userSalary;
 	
 	@Column(name="department_id")
-	private int departmentId;
+	private int userDepartmentId;
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public User(int userId, String name, int age, float salary, int departmentId) {
+	public User(int userId, String userName, int userAge, float userSalary, int userDepartmentId) {
 		super();
 		this.userId = userId;
-		this.name = name;
-		this.age = age;
-		this.salary = salary;
-		this.departmentId = departmentId;
+		this.userName = userName;
+		this.userAge = userAge;
+		this.userSalary = userSalary;
+		this.userDepartmentId = userDepartmentId;
 	}
 
 	public int getUserId() {
@@ -50,44 +49,42 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public int getAge() {
-		return age;
+	public int getUserAge() {
+		return userAge;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
 	}
 
-	public float getSalary() {
-		return salary;
+	public float getUserSalary() {
+		return userSalary;
 	}
 
-	public void setSalary(float salary) {
-		this.salary = salary;
+	public void setUserSalary(float userSalary) {
+		this.userSalary = userSalary;
 	}
 
-	public int getDepartmentId() {
-		return departmentId;
+	public int getUserDepartmentId() {
+		return userDepartmentId;
 	}
 
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+	public void setUserDepartmentId(int userDepartmentId) {
+		this.userDepartmentId = userDepartmentId;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", age=" + age + ", salary=" + salary + ", departmentId="
-				+ departmentId + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", userAge=" + userAge + ", userSalary="
+				+ userSalary + ", userDepartmentId=" + userDepartmentId + "]";
 	}
 	
-	
-
 }

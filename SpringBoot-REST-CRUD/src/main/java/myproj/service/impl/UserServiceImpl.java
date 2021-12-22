@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import myproj.dao.UserDao;
 import myproj.entity.User;
 import myproj.repo.UserRepo;
+import myproj.response.UserDepartmentResponse;
 import myproj.service.UserService;
 
 @Service
@@ -14,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@Override
 	public List<User> getAllUsers() {
@@ -51,8 +56,14 @@ public class UserServiceImpl implements UserService {
 		return toDeleteUser;
 	}
 	
+	//using @Query native query
 	public List<User> filterUserBySalary(float salary){
 		return userRepo.filterUserBySalary(salary);
+	}
+	
+	//using Dao,DaoSupport,NamedParameterJdbcDaoSupport,JdbcTemplate,BeanPropertyRowMapper
+	public List<UserDepartmentResponse> getUserDepartments(){
+		return userDao.getUserDepartment();
 	}
 
 }

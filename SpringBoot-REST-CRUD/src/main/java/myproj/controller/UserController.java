@@ -14,73 +14,85 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import myproj.entity.User;
+import myproj.response.UserDepartmentResponse;
 import myproj.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("")
-	public ResponseEntity<List<User>> getAllUsers(){
+	public ResponseEntity<List<User>> getAllUsers() {
 		List<User> users = null;
 		try {
 			users = userService.getAllUsers();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+		System.out.println("***********");
+		System.out.println(users.get(0));
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable("id") int id){
+	public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
 		User user = null;
 		try {
 			user = userService.getUserById(id);
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		return new ResponseEntity<User>(user,HttpStatus.OK);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/addOrUpdateUser")
 	public ResponseEntity<User> addOrUpdateUser(@RequestBody User user) {
 		User userAddedOrUpdated = null;
 		try {
 			userAddedOrUpdated = userService.addOrUpdateUser(user);
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		return new ResponseEntity<User>(userAddedOrUpdated,HttpStatus.OK);
+		return new ResponseEntity<User>(userAddedOrUpdated, HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/deleteUser/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable("id") int id){
+	public ResponseEntity<User> deleteUser(@PathVariable("id") int id) {
 		User userDeleted = null;
 		try {
 			userDeleted = userService.deleteUser(id);
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
+
 			System.out.println(ex.getMessage());
 		}
-		return new ResponseEntity<User>(userDeleted,HttpStatus.OK);
+		return new ResponseEntity<User>(userDeleted, HttpStatus.OK);
 	}
-	
-	//Using native query
+
+	// using @Query native query
 	@GetMapping("/filterUserBySalary/{salary}")
-	public ResponseEntity<List<User>> filterUserBySalary(@PathVariable("salary") float salary){
+	public ResponseEntity<List<User>> filterUserBySalary(@PathVariable("salary") float salary) {
 		List<User> users = null;
 		try {
-			 users =  userService.filterUserBySalary(salary);
-		}
-		catch(Exception ex) {
+			users = userService.filterUserBySalary(salary);
+		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
-	
+
+	// using
+	// Dao,DaoSupport,NamedParameterJdbcDaoSupport,JdbcTemplate,BeanPropertyRowMapper
+	@GetMapping("/getUserDepartments")
+	public ResponseEntity<List<UserDepartmentResponse>> getUserDepartments() {
+		List<UserDepartmentResponse> response = null;
+		try {
+			response = userService.getUserDepartments();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return new ResponseEntity<List<UserDepartmentResponse>>(response, HttpStatus.OK);
+	}
 }
