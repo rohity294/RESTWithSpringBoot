@@ -9,4 +9,5 @@ public interface UserService {
 	public User getUserById(int userId);
 	public User addOrUpdateUser(User user);
 	public User deleteUser(int userId);
+	public List<User> filterUserBySalary(float salary);
 }

@@ -70,4 +70,17 @@ public class UserController {
 		return new ResponseEntity<User>(userDeleted,HttpStatus.OK);
 	}
 	
+	//Using native query
+	@GetMapping("/filterUserBySalary/{salary}")
+	public ResponseEntity<List<User>> filterUserBySalary(@PathVariable("salary") float salary){
+		List<User> users = null;
+		try {
+			 users =  userService.filterUserBySalary(salary);
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+	}
+	
 }

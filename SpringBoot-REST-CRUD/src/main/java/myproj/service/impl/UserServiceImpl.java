@@ -50,5 +50,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return toDeleteUser;
 	}
+	
+	public List<User> filterUserBySalary(float salary){
+		return userRepo.filterUserBySalary(salary);
+	}
 
 }
