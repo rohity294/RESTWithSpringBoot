@@ -19,6 +19,7 @@ import myproj.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
 	@Autowired
@@ -47,7 +48,7 @@ public class UserController {
 		}
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
+    
 	@PostMapping("/addOrUpdateUser")
 	public ResponseEntity<User> addOrUpdateUser(@RequestBody User user) {
 		User userAddedOrUpdated = null;
